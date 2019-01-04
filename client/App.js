@@ -1,15 +1,38 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, Image } from 'react-native';
 import logo from './assets/logo.jpg'
 
+class ChatInput extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = { text: '' }
+	}
+
+	render () {
+		return (
+			<View>
+				<TextInput
+					style={{height: 40}}
+          placeholder="Say hello!"
+          onChangeText={(text) => this.setState({text})}
+				/>
+				<Button title="Send!" onPress={() => {
+					alert(this.state.text)
+				}}/>
+			</View>
+		)
+	}
+}
+
 class Sub extends React.Component {
+	constructor(props) {
+		super(props)
+	}
+
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text>Hello World!</Text>
-				<Button title="Send!" onPress={() => {
-					alert('You clicked me!')
-				}}/>
+				<Text>{this.props.text}</Text>
 			</View>
 		);
 	}
@@ -31,7 +54,8 @@ export default class App extends React.Component {
 		return (
 			<View style={styles.page}>
 				<Header />
-				<Sub />
+				<Sub text='Hello World!'/>
+				<ChatInput />
 			</View>
 		);
 	}
@@ -41,13 +65,16 @@ const styles = StyleSheet.create({
 	page: {
 		flex: 1,
 		marginTop: '10%',
-		padding: '5%',
+		padding: 10,
 		backgroundColor: '#fff',
 		justifyContent: 'center',
 	},
 	header: {
 		flex: 1,
 		alignItems: 'flex-end',
+	},
+	textInput: {
+
 	},
 	container: {
 		flex: 1,

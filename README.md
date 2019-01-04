@@ -12,4 +12,5 @@ In short, it's a first foray into React Native and Sockets to create a chat appl
  - node v.10.11
 
 ### Getting Started
- - npm start
+ - `cd server && npm start`
+ - `cd ../client && npm start`
