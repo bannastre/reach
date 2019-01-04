@@ -1,19 +1,31 @@
 /* eslint-disable no-console */
-const server = require('http').createServer();
-const io = require('socket.io')(server);
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-const port = 3001;
+const port = 3000
 
-io.on('connection', (client) => {
-  client.on('event', (data) => { console.log(' --> ', data); });
-  client.on('disconnect', () => { console.log('`Reach Client Disconnected'); });
+app.get('/', function(req, res){
+  res.send('Hello World!');
 });
 
+io.on('connection', (client) => {
+	console.log(`Client ${client.id} connected`)
+  
+  client.on('chat', (msg) => {
+    console.log(`--> `, msg);
+  });
 
-function onListening() {
-  const addr = server.address();
-  console.log(`Reach - Chat Server listening on port: ${addr.port}`);
-}
+  client.on('disconnect', () => {
+    console.log(`Client ${client.id} disconnected`);
+  });
 
-server.listen(port);
-server.on('listening', onListening);
+  client.on('error', (err) => {
+    console.log(`Err recieved from Client: ${client.id}\n err`)
+  })
+})
+
+http.listen(port, err => {
+  if (err) { throw err }
+  console.log(`listening on port ${port}`)
+})

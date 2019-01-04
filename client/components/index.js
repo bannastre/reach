@@ -1,7 +1,7 @@
 const Header = require('./header')
-const Input = require('./chatInput')
+const Input = require('./input')
 const Feed = require('./feed')
-const io = require('./socket-client')
+const io = require('./io')
 
 module.exports = {
   Header,

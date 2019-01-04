@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Header, Feed, Input, io } from './components'
+import { Header, Feed, Input } from './components'
 
 export default class App extends React.Component {
 	render() {
