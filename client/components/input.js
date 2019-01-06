@@ -11,6 +11,7 @@ class Input extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = { text: '' }
+		this.props = props
 		this.send = this.send.bind(this)
 	}
 
@@ -30,7 +31,7 @@ class Input extends React.Component {
 	}
 
 	send() {
-		socket.emit('chat', this.state.text)
+		socket.emit('chat', this.state.text, this.props.username)
 	}
 
 }

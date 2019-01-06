@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Header, Feed, Input } from './components'
+import { Header, Feed, Input } from './components';
+import creds from './credentials';
 
 export default class App extends React.Component {
 	render() {
@@ -8,7 +9,7 @@ export default class App extends React.Component {
 			<View style={styles.page}>
 				<Header />
 				<Feed text='Hello World!'/>
-				<Input />
+				<Input username={creds.username} />
 			</View>
 		);
 	}
