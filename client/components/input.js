@@ -9,40 +9,43 @@ console.log("​Socket", socket.connected)
 
 class Input extends React.Component {
 	constructor(props) {
-		super(props)
-		this.state = { text: '' }
-		this.props = props
-		this.send = this.send.bind(this)
+		super(props);
+		this.state = { text: '' };
+		this.send = this.send.bind(this);
 	}
 
 	render () {
 		return (
-			<View style={styles.input}>
+			<View style={styles.view}>
 				<TextInput
 					style={styles.textInput}
           placeholder="Say hello!"
           onChangeText={(text) => this.setState({text})}
 				/>
-				<Button title="Send!" onPress={() => {
-					this.send()
-				}}/>
+				<Button title="Send!" onPress={() => this.send()}/>
 			</View>
 		)
 	}
 
-	send() {
-		socket.emit('chat', this.state.text, this.props.username)
+	udpateMessageHandler(msg) {
+		this.props.handleMessage(msg)
 	}
 
+	send() {
+		this.udpateMessageHandler(this.state.text)
+		socket.emit('chat', this.state.text)
+	}
 }
 
 const styles = StyleSheet.create({
-	input: {
+	view: {
 		flex: 1,
-		flexDirection: 'column'
+		flexDirection: 'row'
 	},
 	textInput: {
-    height: 40
+		flex: 1,
+		height: 40,
+		alignItems: 'flex-end',
 	}
 });
 

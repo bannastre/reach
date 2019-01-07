@@ -12,8 +12,8 @@ app.get('/', function(req, res){
 io.on('connection', (client) => {
 	console.log(`Client ${client.id} connected`)
   
-  client.on('chat', (msg, username) => {
-    console.log(`--> `, username, ': ', msg);
+  client.on('chat', (msg) => {
+    console.log(`--> `, msg);
   });
 
   client.on('disconnect', () => {
