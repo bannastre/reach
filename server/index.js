@@ -1,16 +1,19 @@
 /* eslint-disable no-console */
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+require('dotenv').config()
+const express = require('express');
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
-app.set('view engine', 'ejs')
+const port = process.env.PORT
 
-const port = 3000
+app.use(express.static('public'))
 
 app.get('/', function(req, res){
   try {
-    res.render(`${__dirname}/index.ejs`);
+    res.sendFile(`${__dirname}/index.html`);
   } catch (err) {
+		console.log("​}catch -> err", err)
     res.send(err)
   }
 });
