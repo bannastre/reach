@@ -23,7 +23,8 @@ class Feed extends React.Component {
         <Input 
           style={styles.input} 
           handleMessage={message => this.messageHandler(message)} 
-          data={this.state.messages} 
+          data={this.state.messages}
+          username={this.props.username}
         />
       </View>
 		);

@@ -33,7 +33,7 @@ class Input extends React.Component {
 
 	send() {
 		this.udpateMessageHandler(this.state.text)
-		socket.emit('chat', this.state.text)
+		socket.emit('chat message', this.state.text, { user: this.props.username })
 	}
 }
 
