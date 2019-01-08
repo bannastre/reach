@@ -1,1 +1,4 @@
-const socketUrl = 'http://127.0.0.1:3000/'
+require('dotenv').config()
+
+const socketUrl = process.env.SOCKET_URL
+const user = process.env.USER
