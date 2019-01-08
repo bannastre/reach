@@ -19,16 +19,15 @@
     <script defer src="/__/firebase/init.js"></script>
     
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="config.js"></script>
+    <script src="../socket.io/socket.io.js"></script>
     
     <script>
-      var socket = io.connect(socketUrl);
+      var socket = io.connect('http://127.0.0.1:3000/');
 
       $(function () {
         $('form').submit((e) => {
           e.preventDefault();
-          socket.emit('chat message', $('#m').val(), { user });
+          socket.emit('chat message', $('#m').val(), { user: 'Reach Admin' });
           $('#m').val('');
           return false;
         });
